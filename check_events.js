@@ -42,13 +42,18 @@ let send_mail = function () {
 };
 
 function on_cron_tick() {
-    request('https://www.esat.kuleuven.be/psi/seminars/seminar-archive', function (error, response, html) {
+    request('https://www.esat.kuleuven.be/psi/seminars/overview', function (error, response, html) {
         if (!error && response.statusCode === 200) {
             // Download webpage
             const $ = cheerio.load(html);
 
             // Find event table
             let event_table = $('table[summary="Content listing"]');
+            // Make sure there are future events
+            if (event_table.length === 0) {
+                // No future events, we're done here.
+                return;
+            }
 
             // Convert event table to JSON
             const events = table_to_json(event_table, $);
