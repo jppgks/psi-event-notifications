@@ -9,6 +9,7 @@ function on_cron_tick() {
 		raw_html = html;
 		const $ = cheerio.load(raw_html)
 		var event_table = $('table[summary="Content listing"]')
+		event_table = $('<table>').append(event_table)
 		console.log(event_table.html())
 	  }
 	});
