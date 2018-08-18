@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/home/r0586832/workspace/anaconda3/bin/node
 
 const fs = require('fs');
 const tabletojson = require('tabletojson');
@@ -37,7 +37,6 @@ let send_mail = function () {
         if (error) {
             return console.log(error);
         }
-        console.log('Message sent: %s', info.messageId);
     });
 };
 
@@ -66,9 +65,7 @@ function on_cron_tick() {
 
                 if (data.toString() !== most_recent_event_date) {
                     // Write date of most recent event to file
-                    fs.writeFile(date_last_seen_filepath, most_recent_event_date, function (err) {
-                        console.debug("Wrote date of most recent event to file.")
-                    });
+                    fs.writeFile(date_last_seen_filepath, most_recent_event_date, function (err) {});
 
                     // Send email
                     send_mail();
