@@ -1,3 +1,6 @@
+# sensitive info
+config.js
+
 # IDE specific
 .idea/
 
