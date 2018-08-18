@@ -1,0 +1,26 @@
+{
+  "name": "psi-event-notifications",
+  "version": "1.0.0",
+  "description": "Sends email when a new PSI event is happening.",
+  "main": "check_events.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "nodemailer": "^4.6.8",
+    "request": "^2.88.0",
+    "tabletojson": "^0.9.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jppgks/psi-event-notifications.git"
+  },
+  "author": "Joppe Geluykens",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jppgks/psi-event-notifications/issues"
+  },
+  "homepage": "https://github.com/jppgks/psi-event-notifications#readme"
+}
