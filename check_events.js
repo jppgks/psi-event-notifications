@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 const tabletojson = require('tabletojson');
-const CronJob = require('cron').CronJob;
 const request = require('request');
 const cheerio = require('cheerio');
 const nodemailer = require('nodemailer');
@@ -74,8 +73,4 @@ function on_cron_tick() {
     });
 }
 
-console.log('Before job instantiation');
-//const job = new CronJob('00 30 11 * * 1-5', on_cron_tick);
-const job = new CronJob('* * * * * *', on_cron_tick);
-console.log('After job instantiation');
-job.start();
+on_cron_tick();
