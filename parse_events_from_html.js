@@ -1,3 +1,4 @@
+const tabletojson = require('tabletojson')
 var CronJob = require('cron').CronJob;
 const request = require('request');
 const cheerio = require('cheerio')
@@ -10,7 +11,8 @@ function on_cron_tick() {
 		const $ = cheerio.load(raw_html)
 		var event_table = $('table[summary="Content listing"]')
 		event_table = $('<table>').append(event_table)
-		console.log(event_table.html())
+		event_table = tabletojson.convert(event_table.html())
+		console.log(event_table)
 	  }
 	});
 }
