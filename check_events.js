@@ -54,7 +54,7 @@ function on_cron_tick() {
             const events = table_to_json(event_table, $);
 
             // Read date of last seen event from file
-            let date_last_seen_filepath = "date_most_recent_event_seen.txt";
+            let date_last_seen_filepath = path.resolve(__dirname, "date_most_recent_event_seen.txt");
             fs.readFile(date_last_seen_filepath, function (err, data) {
                 const most_recent_event = events[0];
                 const most_recent_event_date = most_recent_event['Start Date'];
