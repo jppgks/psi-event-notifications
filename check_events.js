@@ -14,7 +14,7 @@ let table_to_json = function (event_table, $) {
     return event_table[0];
 };
 
-let send_mail = function () {
+let send_mail = function (eventTitle) {
     let transporter = nodemailer.createTransport({
         host: 'smtps.kuleuven.be',
         port: 465,
@@ -27,10 +27,10 @@ let send_mail = function () {
 
     let mailOptions = {
         from: '"Joppe Geluykens" <joppe.geluykens@student.kuleuven.be>',
-        to: 'joppe.geluykens@student.kuleuven.be', // list of receivers
-        subject: 'New PSI Seminar 🎟',
-        text: 'https://www.esat.kuleuven.be/psi/seminars/overview', // plain text body
-        html: '<a href="https://www.esat.kuleuven.be/psi/seminars/overview">See upcoming seminars</a>' // html body
+        to: config.receivers, // list of receivers
+        subject: 'New PSI Seminar 🤗: '.concat(eventTitle),
+        text: eventTitle.concat(' https://www.esat.kuleuven.be/psi/seminars/overview'), // plain text body
+        html: 'Title: '.concat(eventTitle, '<br/><a href="https://www.esat.kuleuven.be/psi/seminars/overview">See upcoming seminars</a>') // html body
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -68,7 +68,7 @@ function on_cron_tick() {
                     fs.writeFile(date_last_seen_filepath, most_recent_event_date, function (err) {});
 
                     // Send email
-                    send_mail();
+                    send_mail(most_recent_event['Title']);
                 }
             });
         }
